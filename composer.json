@@ -16,6 +16,7 @@
         "symfony/yaml": "5.2.*"
     },
     "require-dev": {
+        "phpstan/phpstan": "^0.12.82",
         "symfony/phpunit-bridge": "^5.2"
     },
     "config": {
@@ -23,7 +24,8 @@
         "preferred-install": {
             "*": "dist"
         },
-        "sort-packages": true
+        "sort-packages": true,
+        "bin-dir": "bin/"
     },
     "autoload": {
         "psr-4": {
