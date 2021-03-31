@@ -38,8 +38,10 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
 
-      - name: Run phpstan
-        run: bin/phpstan analyse
+      - name: Run static code analisis
+        run: |
+          bin/ecs check
+          bin/phpstan analyse
 
       - name: Run phpunit tests
         run: bin/phpunit
