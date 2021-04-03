@@ -38,7 +38,7 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
 
-      - name: Run static code analisis
+      - name: Run static code analysis
         run: |
           bin/ecs check
           bin/phpstan analyse

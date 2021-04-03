@@ -15,6 +15,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $parameters->set(Option::SETS, [
         SetList::PSR_12,
+        SetList::CLEAN_CODE,
         SetList::STRICT,
         SetList::COMMON,
         SetList::SYMFONY,
