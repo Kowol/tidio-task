@@ -1,0 +1,16 @@
+actor: IntegrationTester
+modules:
+    enabled:
+        -   Doctrine2:
+                depends: Symfony
+                cleanup: false
+        -   Symfony:
+                app_path: 'src'
+                environment: 'test'
+        -   Db:
+                dsn: 'pgsql:host=db_test;dbname=pgdb'
+                user: 'pguser'
+                password: 'pgpass'
+                populate: true
+                populator: 'APP_ENV=test bin/console d:m:m --no-interaction'
+                cleanup: true

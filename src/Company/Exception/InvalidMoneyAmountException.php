@@ -1,0 +1,9 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Company\Exception;
+
+class InvalidMoneyAmountException extends \InvalidArgumentException
+{
+}

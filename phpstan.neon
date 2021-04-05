@@ -1,4 +1,9 @@
 parameters:
-	level: 6
-	paths:
-		- src
+    level: 6
+    paths:
+        - src
+    checkGenericClassInNonGenericObjectType: false
+    ignoreErrors:
+        -
+            message: '#Match expression does not handle remaining values#'
+            path: src/Company/Provider/SalarySupplement/SupplementProvider.php

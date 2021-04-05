@@ -1,0 +1,6 @@
+tests/unit/Company/Provider/SalarySupplement/Strategy/FixedProviderTest.php:testItCalculatesSalarySupplement
+tests/unit/Company/Provider/SalarySupplement/Strategy/FixedProviderTest.php:testItCalculatesSalarySupplement
+tests/unit/Company/Provider/SalarySupplement/Strategy/FixedProviderTest.php:testItCalculatesSalarySupplement
+tests/unit/Company/Provider/SalarySupplement/Strategy/FixedProviderTest.php:testItCalculatesSalarySupplement
+tests/unit/Company/Provider/SalarySupplement/Strategy/PercentageProviderTest.php:testItCalculatesSalarySupplement
+tests/unit/Company/Provider/SalarySupplement/Strategy/PercentageProviderTest.php:testItCalculatesSalarySupplement

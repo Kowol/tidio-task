@@ -44,4 +44,5 @@ jobs:
           bin/phpstan analyse
 
       - name: Run phpunit tests
-        run: bin/phpunit
+        run: |
+          bin/codecept run unit
