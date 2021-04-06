@@ -38,11 +38,11 @@ class SalaryReportGeneratorTest extends Unit
 
         self::assertEquals(
             (new Money(12000))->getAmount(),
-            $report[1]->salaryTotal
+            $report[0]->salaryTotal
         );
         self::assertEquals(
             (new Money(550))->getAmount(),
-            $report[0]->salaryTotal
+            $report[1]->salaryTotal
         );
     }
 
