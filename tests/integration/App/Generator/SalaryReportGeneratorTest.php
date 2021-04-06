@@ -8,6 +8,7 @@ use App\DTO\Input\SalaryReportOrder;
 use App\DTO\Input\SalaryReportSearch;
 use App\Generator\SalaryReportGenerator;
 use Codeception\Test\Unit;
+use Company\Model\Department;
 use Company\Model\Employment;
 use Company\Model\Money;
 use Tests\_support\Mother\DepartmentMother;
@@ -20,35 +21,45 @@ class SalaryReportGeneratorTest extends Unit
 
     public function testItGeneratesReport(): void
     {
-        $employmentA = $this->createEmployment($salaryBaseA = 500, $percentSupplementA = 10);
-        $employmentB = $this->createEmployment($salaryBaseB = 10000, $percentSupplementB = 20);
+        $departmentA = DepartmentMother::basicPercentageSupplement($percentSupplementA = 10);
+        $departmentB = DepartmentMother::basicPercentageSupplement($percentSupplementB = 20);
 
-        $this->tester->haveInRepository($employmentA->getDepartment());
+        $employmentA = $this->createEmployment($salaryBaseA = 500, $departmentA);
+        $employmentB = $this->createEmployment($salaryBaseB = 10000, $departmentB);
+        $employmentC = $this->createEmployment($salaryBaseB = 12000, $departmentB);
+
+        $this->tester->haveInRepository($departmentA);
+        $this->tester->haveInRepository($departmentB);
         $this->tester->haveInRepository($employmentA->getEmployee());
-        $this->tester->haveInRepository($employmentB->getDepartment());
         $this->tester->haveInRepository($employmentB->getEmployee());
-
-        /** @var SalaryReportGenerator $generator */
-        $generator = $this->tester->grabService(SalaryReportGenerator::class);
+        $this->tester->haveInRepository($employmentC->getEmployee());
 
         $search = new SalaryReportSearch();
         $search->order = new SalaryReportOrder('salaryTotal', 'DESC');
 
+        /** @var SalaryReportGenerator $generator */
+        $generator = $this->tester->grabService(SalaryReportGenerator::class);
+
         $report = $generator->generate(new \DateTime(), $search);
 
+        self::assertCount(3, $report);
+
         self::assertEquals(
-            (new Money(12000))->getAmount(),
+            (new Money(14400))->getAmount(),
             $report[0]->salaryTotal
         );
         self::assertEquals(
-            (new Money(550))->getAmount(),
+            (new Money(12000))->getAmount(),
             $report[1]->salaryTotal
+        );
+        self::assertEquals(
+            (new Money(550))->getAmount(),
+            $report[2]->salaryTotal
         );
     }
 
-    private function createEmployment(int $salaryBase, int $salaryPercentSupplement): Employment
+    private function createEmployment(int $salaryBase, Department $department): Employment
     {
-        $department = DepartmentMother::basicPercentageSupplement($salaryPercentSupplement);
         return EmploymentMother::withSalaryAndDepartment($salaryBase, $department);
     }
 }
