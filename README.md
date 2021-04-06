@@ -21,6 +21,8 @@ Use `docker exec -it php bash -c "bin/console company:employee:create"` command 
 ### Generate report
 Use `docker exec php bash -c "bin/console company:salary:report"` command and follow the instructions
 
+Use `docker exec php bash -c "bin/console company:salary:report --help"` to see available options
+
 ### Tests
 ### Codeception
 Use `docker exec php bash -c "bin/codecept run"` to run all test suites
