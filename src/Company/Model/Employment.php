@@ -18,7 +18,7 @@ class Employment
     private Employee $employee;
 
     /**
-     * @ORM\OneToOne(targetEntity="Department")
+     * @ORM\ManyToOne(targetEntity="Department")
      */
     private Department $department;
 
