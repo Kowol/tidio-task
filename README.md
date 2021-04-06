@@ -5,6 +5,8 @@
 ### Docker
 Run `docker-compose up -d` to setup docker containers
 
+Run `docker exec -it php bash -c "bin/console d:m:m --no-interaction"` to setup database
+
 ## Usage
 
 ### Create department
