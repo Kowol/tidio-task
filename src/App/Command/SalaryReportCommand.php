@@ -45,7 +45,7 @@ class SalaryReportCommand extends Command
     {
         $searchInput = $this->createReportSearchInput($input);
 
-        $reportDate = new \DateTime('2035-04-05');
+        $reportDate = new \DateTime();
 
         $table = new Table($output);
         $table->setHeaders([
