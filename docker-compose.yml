@@ -2,8 +2,8 @@ version: '3.5'
 
 services:
   php-fpm:
+    container_name: php
     build: ./infrastructure/docker/php-fpm
-
     depends_on:
       - db
       - db_test

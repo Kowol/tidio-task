@@ -14,17 +14,6 @@ jobs:
       matrix:
         php-versions: ['8.0']
 
-    services:
-      db_test:
-        image: postgres:10-alpine
-        env:
-          POSTGRES_USER: pguser
-          POSTGRES_PASSWORD: pgpass
-          POSTGRES_DB: pgdb
-        ports:
-          - 5432:5432
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
-
     steps:
       - uses: actions/checkout@v2
 
@@ -34,8 +23,11 @@ jobs:
           php-version: ${{ matrix.php-versions }}
           tools: composer:v2
 
+      - name: Run docker compose
+        run: docker-compose up -d
+
       - name: Validate composer.json and composer.lock
-        run: composer validate
+        run: docker exec php bash -c "composer validate"
 
       - name: Cache Composer packages
         id: composer-cache
@@ -47,16 +39,12 @@ jobs:
             ${{ runner.os }}-php-
 
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress
+        run: docker exec php bash -c "composer install --prefer-dist --no-progress"
 
       - name: Run static code analysis
         run: |
-          bin/ecs check
-          bin/phpstan analyse
+          docker exec php bash -c "bin/ecs check"
+          docker exec php bash -c "bin/phpstan analyse"
 
       - name: Run tests
-        env:
-          DATABASE_URL: postgresql://pguser:pgpass@localhost:5432/pgdb?serverVersion=13&charset=utf8
-        run: |
-          bin/codecept run unit
-          bin/codecept run integration
+        run: docker exec php bash -c "bin/codecept run"
