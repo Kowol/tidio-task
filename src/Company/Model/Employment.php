@@ -18,7 +18,6 @@ class Employment
     private Employee $employee;
 
     /**
-     * @ORM\Id
      * @ORM\OneToOne(targetEntity="Department")
      */
     private Department $department;
