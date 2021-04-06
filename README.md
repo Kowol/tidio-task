@@ -1,4 +1,5 @@
 # Tidio task
+[![CI](https://github.com/Kowol/tidio-task/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/Kowol/tidio-task/actions/workflows/ci.yml)
 
 ## Setup
 
