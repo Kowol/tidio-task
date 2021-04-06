@@ -18,9 +18,6 @@ coverage:
         - src/*
     exclude:
         - src/Kernel.php
-        - src/**/Controller/*
-        - src/**/DTO/*
-        - src/**/Model/*
         - src/**/Enum/*
         - src/**/Exception/*
         - src/Infrastructure/Doctrine/Migrations/*
