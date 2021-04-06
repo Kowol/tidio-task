@@ -51,6 +51,14 @@ class FixedProviderTest extends TestCase
                 $calculationDate = new \DateTime('2021-08-01'),
                 $expectedSupplementInCents = 0,
             ],
+            'max calculation years are 10, calculation date before hired' => [
+                $baseSalaryInCents,
+                $fixedSupplementAmountInCents,
+                $maxYearsForSupplementCalculation = 10,
+                $hiredOn = new \DateTime('2021-01-10'),
+                $calculationDate = new \DateTime('2020-08-01'),
+                $expectedSupplementInCents = 0,
+            ],
             'max calculation years are 10, years worked 1' => [
                 $baseSalaryInCents,
                 $fixedSupplementAmountInCents,
